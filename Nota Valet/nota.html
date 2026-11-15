@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Nota — Nota Valet SOS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h1>Nota Valet SOS</h1>
+      <a href="index.html">📊 Dashboard</a>
+      <a href="nota.html" class="aktif">📝 Buat Nota</a>
+      <a href="riwayat.html">📋 Riwayat</a>
+    </nav>
+
+    <div class="container">
+      <h2 class="judul-halaman">Bukti Pendaftaran Pelanggan Valet</h2>
+
+      <div class="kartu">
+        <label>No. Urut</label>
+        <input type="text" id="noNota" readonly />
+
+        <label>Nomor Polisi</label>
+        <div class="autocomplete-wrapper">
+          <input
+            type="text"
+            id="nomorPolisi"
+            placeholder="Contoh: H1075SS"
+            autocomplete="off"
+            aria-autocomplete="list"
+            aria-controls="saranNomorPolisi"
+            aria-expanded="false"
+          />
+          <div
+            id="saranNomorPolisi"
+            class="autocomplete-list"
+            role="listbox"
+            hidden
+          ></div>
+        </div>
+
+        <label>Tipe Mobil</label>
+        <input type="text" id="tipeMobil" placeholder="Contoh: ZENIX" />
+
+        <label>Biaya Valet</label>
+        <select id="biayaValet">
+          <option value="FREE [PASIEN EKSEKUTIF]">
+            FREE [PASIEN EKSEKUTIF]
+          </option>
+        </select>
+
+        <label>No. HP</label>
+        <input type="text" id="noHP" placeholder="Opsional - isi jika ada" />
+
+        <button onclick="buatNota()">✅ Buat Nota & Simpan</button>
+
+        <!-- PREVIEW NOTA -->
+        <div class="nota-preview" id="notaHasil" style="display: none">
+          <div
+            style="display: flex; align-items: flex-start; margin-bottom: 10px"
+          >
+            <div class="judul-nota">
+              <h2>BUKTI PENDAFTARAN VALET</h2>
+            </div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">NO NOTA</div>
+            <div class="baris-kanan" style="font-weight: bold">
+              : <span id="pNoNota"></span>
+            </div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">NOMOR POLISI</div>
+            <div class="baris-kanan" style="font-weight: bold">
+              : <span id="pPolisi"></span>
+            </div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">TIPE MOBIL</div>
+            <div class="baris-kanan">: <span id="pTipe"></span></div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">TGL TRANSAKSI</div>
+            <div class="baris-kanan">: <span id="pTanggal"></span></div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">WAKTU MASUK</div>
+            <div class="baris-kanan">: <span id="pWaktu"></span></div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">BIAYA VALET</div>
+            <div class="baris-kanan">: <span id="pBiaya"></span></div>
+          </div>
+          <div class="baris">
+            <div class="baris-kiri">NO HP</div>
+            <div class="baris-kanan">: <span id="pHP"></span></div>
+          </div>
+
+          <div class="catatan">NB: JAM OPERASIONAL SAMPAI PUKUL 17.00</div>
+
+          <button
+            class="btn-cetak"
+            onclick="window.print()"
+            style="width: auto; margin-top: 20px"
+          >
+            🖨️ Cetak Nota
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

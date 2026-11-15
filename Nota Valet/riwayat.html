@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Riwayat — Nota Valet SOS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+    <nav class="navbar">
+        <h1> Nota Valet SOS </h1>
+        <a href="index.html"> Dashboard </a>
+        <a href="nota.html"> Buat Nota </a>
+        <a href="riwayat.html" class="aktif"> Riwayat </a>
+    </nav>
+
+    <div class="container">
+        <h2 class="judul-halaman"> Riwayat Semua Nota Valet </h2>
+
+        <div class="kartu">
+            <div class="pencarian-baris">
+                <!-- PENCARIAN NOMOR POLISI / TIPE MOBIL -->
+
+                <input type="text" id="cari" placeholder="Cari No. Polisi / Tipe Mobil..." oninput="filterRiwayat()">
+
+                <!-- PENCARIAN TANGGAL -->
+                <input type="date" id="cariTanggal" title="Pilih tanggal" onchange="filterRiwayat()">
+
+                <!-- EXPORT EXCEL -->
+                <button class="btn-export" onclick="exportExcel()" type="button"> Export Excel </button>
+
+                <!-- HAPUS SEMUA -->
+                <button class="btn-hapus" onclick="hapusSemua()" type="button"> Hapus Semua </button>
+
+            </div>
+
+            <table>
+                <thead>
+
+                    <tr>
+                        <th>No</th>
+                        <th>No. Polisi</th>
+                        <th>Tipe Mobil</th>
+                        <th>Tanggal Transaksi</th>
+                        <th>Waktu Masuk</th>
+                        <th>Biaya Valet</th>
+                        <th>No. HP</th>
+                        <th>Aksi</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tabelRiwayat"></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- LIBRARY EXCEL -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- SCRIPT APLIKASI -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
