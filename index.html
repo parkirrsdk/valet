@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PARKING VALLET RSDK - SOS</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- =================================================
+         SIDEBAR
+         ================================================= -->
+
+    <nav class="navbar">
+      <h1>Valet RSDK - SOS</h1>
+      <a href="index.html" class="aktif"> 📊 Dashboard </a>
+      <a href="nota.html"> 📝 Buat Nota </a>
+      <a href="riwayat.html"> 📋 Riwayat </a>
+    </nav>
+
+    <!-- =================================================
+         MAIN CONTENT
+         ================================================= -->
+
+    <div class="container dashboard-baru">
+      <!-- =================================================
+             HEADER
+             ================================================= -->
+
+      <div class="dashboard-header">
+        <div>
+          <h2 class="judul-halaman">Dashboard Parking</h2>
+          <p class="dashboard-subtitle">Ringkasan aktivitas Valet RSDK - SOS</p>
+        </div>
+
+        <div class="dashboard-waktu">
+          <span> 📅 </span>
+          <span id="dashboardTanggal"> - </span>
+        </div>
+      </div>
+      <!-- =================================================
+             KPI CARDS
+             ================================================= -->
+
+      <div class="kpi-grid">
+        <!-- TOTAL NOTA -->
+
+        <div class="kpi-card kpi-total">
+          <div class="kpi-icon">📋</div>
+          <div class="kpi-content">
+            <div class="kpi-label">TOTAL NOTA</div>
+            <div class="kpi-value" id="totalSemua">0</div>
+            <div class="kpi-info">Semua waktu</div>
+          </div>
+        </div>
+        <!-- NOTA BULAN INI -->
+
+        <div class="kpi-card kpi-bulan">
+          <div class="kpi-icon">📅</div>
+
+          <div class="kpi-content">
+            <div class="kpi-label">BULAN INI</div>
+
+            <div class="kpi-value" id="totalBulan">0</div>
+
+            <div class="kpi-info">Nota dibuat</div>
+          </div>
+        </div>
+
+        <!-- NOTA HARI INI -->
+
+        <div class="kpi-card kpi-hari">
+          <div class="kpi-icon">🚗</div>
+
+          <div class="kpi-content">
+            <div class="kpi-label">HARI INI</div>
+
+            <div class="kpi-value" id="totalHari">0</div>
+
+            <div class="kpi-info">Transaksi hari ini</div>
+          </div>
+        </div>
+
+        <!-- PENDAPATAN -->
+
+        <div class="kpi-card kpi-pendapatan">
+          <div class="kpi-icon">💰</div>
+
+          <div class="kpi-content">
+            <div class="kpi-label">PENDAPATAN</div>
+
+            <div class="kpi-value kpi-rupiah" id="totalPendapatan">Rp 0</div>
+
+            <div class="kpi-info">Total nota berbayar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================
+             BARIS GRAFIK 1
+             ================================================= -->
+
+      <div class="dashboard-grid-2">
+        <!-- GRAFIK TRANSAKSI -->
+
+        <div class="dashboard-card">
+          <div class="card-header-dashboard">
+            <div>
+              <h3>Grafik Transaksi</h3>
+
+              <p>Jumlah nota berdasarkan tanggal</p>
+            </div>
+
+            <span class="card-badge"> TRANSAKSI </span>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="grafikTransaksi"></canvas>
+          </div>
+        </div>
+
+        <!-- RINGKASAN -->
+
+        <div class="dashboard-card">
+          <div class="card-header-dashboard">
+            <div>
+              <h3>Ringkasan Valet</h3>
+
+              <p>Statistik transaksi</p>
+            </div>
+          </div>
+
+          <div class="summary-list">
+            <div class="summary-row">
+              <div class="summary-icon">🚗</div>
+
+              <div class="summary-text">
+                <span> Total Transaksi </span>
+
+                <strong id="summaryTotal"> 0 </strong>
+              </div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-icon">🟢</div>
+
+              <div class="summary-text">
+                <span> Transaksi Gratis </span>
+
+                <strong id="summaryGratis"> 0 </strong>
+              </div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-icon">💵</div>
+
+              <div class="summary-text">
+                <span> Transaksi Berbayar </span>
+
+                <strong id="summaryBerbayar"> 0 </strong>
+              </div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-icon">💰</div>
+
+              <div class="summary-text">
+                <span> Pendapatan </span>
+
+                <strong id="summaryPendapatan"> Rp 0 </strong>
+              </div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-icon">📈</div>
+
+              <div class="summary-text">
+                <span> Rata-rata per Nota </span>
+
+                <strong id="summaryRataRata"> Rp 0 </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================
+             GRAFIK PENDAPATAN
+             ================================================= -->
+
+      <div class="dashboard-card dashboard-card-full">
+        <div class="card-header-dashboard">
+          <div>
+            <h3>Grafik Pendapatan Harian</h3>
+
+            <p>Pergerakan pendapatan berdasarkan tanggal</p>
+          </div>
+
+          <span class="card-badge"> PENDAPATAN </span>
+        </div>
+
+        <div class="chart-container chart-pendapatan">
+          <canvas id="grafikPendapatan"></canvas>
+        </div>
+      </div>
+
+      <!-- =================================================
+             BARIS BAWAH
+             ================================================= -->
+
+      <div class="dashboard-grid-2">
+        <!-- TIPE MOBIL -->
+
+        <div class="dashboard-card">
+          <div class="card-header-dashboard">
+            <div>
+              <h3>Tipe Mobil</h3>
+
+              <p>Kendaraan yang masuk</p>
+            </div>
+          </div>
+
+          <div class="chart-container chart-tipe">
+            <canvas id="grafikTipeMobil"></canvas>
+          </div>
+        </div>
+
+        <!-- NOTA TERBARU -->
+
+        <div class="dashboard-card">
+          <div class="card-header-dashboard">
+            <div>
+              <h3>Nota Terbaru</h3>
+
+              <p>10 transaksi terakhir</p>
+            </div>
+
+            <a href="riwayat.html" class="dashboard-link"> Lihat Semua → </a>
+          </div>
+
+          <div class="table-dashboard-wrapper">
+            <table class="table-dashboard">
+              <thead>
+                <tr>
+                  <th>No</th>
+
+                  <th>Polisi</th>
+
+                  <th>Mobil</th>
+
+                  <th>Biaya</th>
+                </tr>
+              </thead>
+
+              <tbody id="tabelTerbaru"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================
+         CHART.JS
+         ================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- =================================================
+         SUPABASE
+         ================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- =================================================
+         SCRIPT WEBSITE
+         ================================================= -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
